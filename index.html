@@ -512,9 +512,17 @@ document.getElementById('downloadBtn').addEventListener('click', () => {
   });
 });
 
-// 초기화: 필터 체크박스 렌더링 + 자동 생성 (2026년 6월, 전체 표시)
+// 초기화: 필터 체크박스 렌더링 + 현재 날짜 기준으로 자동 생성
 renderFilterOptions();
-buildCalendar(2026, 6, []);
+
+const today = new Date();
+const initYear = today.getFullYear();
+const initMonth = today.getMonth() + 1; // 0-indexed -> 1-indexed
+
+document.getElementById('yearInput').value = initYear;
+document.getElementById('monthSelect').value = initMonth;
+
+buildCalendar(initYear, initMonth, []);
 document.getElementById('downloadBtn').style.display = 'block';
 </script>
 
